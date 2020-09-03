@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vigenere Cipher</title>
+    <script type="text/javascript">
+        function encrypt(){
+
+            var p=document.getElementById('p').value.toLowerCase();
+            var k=document.getElementById('k').value.toLowerCase();
+            var ki=0;
+            var result="";
+            for(var i=0;i<p.length;i++)
+            {
+                if(ki==k.length){
+                    ki=0;
+                }
+                var c=(p.charCodeAt(i) + k.charCodeAt(ki) -97-97)%26;
+                result+=String.fromCharCode(c+97);
+                ki+=1
+            }
+            document.getElementById('result').value=result
+
+        }
+
+        function decrypt(){
+            var c=document.getElementById('p').value.toLowerCase();
+            var k=document.getElementById('k').value.toLowerCase();
+            var ki=0;
+            var result="";
+            for(var i=0;i<c.length;i++)
+            {
+                if(ki==k.length){
+                    ki=0;
+                }
+                var d=(c.charCodeAt(i) - k.charCodeAt(ki)+26)%26;
+                result+=String.fromCharCode(d+97);
+                ki+=1
+            }
+            document.getElementById('result').value=result            
+        }
+    </script>
+
+    <style type="text/css">
+        form{
+            background-color: #DCDCDD;
+            height: 320px;
+            width:320px;
+            align-self: center;
+            padding:10px;
+
+
+            }
+        h1{
+            color:#F42172;
+        }
+
+        #enc{
+            background-color:#46494C;
+            height:50px;
+            width:100px;
+            border:2px solid purple;
+            border-radius:15px;
+            color:white;
+            }
+        #enc:hover{
+            background-color:#1985A1;
+            font-weight: bold;
+            border:3px ;
+            height:50px;
+            width:100px;
+            
+            transition: 200ms;
+            border-radius:15px;
+            }      
+
+        #dec{
+
+            margin-left: 40px;
+            background-color:#46494C;
+            height:50px;
+            width:100px;
+            border:2px;
+            border-radius:15px;
+            color:white;    
+            }
+        #dec:hover{
+            background-color:#1985A1;
+            font-weight: bold;
+            border:3px ;
+            height:50px;
+            width:100px;
+            
+            transition: 200ms;
+            border-radius:15px;
+
+        }
+
+
+    </style>
+</head>
+<center>
+    <form>
+        <h1>Vigenere Cipher</h1>
+        Plaintext:  <br><input type="text" id="p"><br><br>
+        Key:   <br> <input type="text" id="k"><br><br>
+        <input type="button" id="enc" value="Encrypt" onclick="encrypt()">
+
+        <input type="button" id="dec" value="Decrypt" onclick="decrypt()"><br><br>
+        Result: <br><input type="text" id="result">
+    </form>
+</center>
+<body>
+
+</body>
+</html>
